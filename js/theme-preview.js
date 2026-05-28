@@ -115,6 +115,7 @@ const presetSelect = document.querySelector("#presetSelect");
 const copyButton = document.querySelector("#copyVariables");
 const toast = document.querySelector("#copyToast");
 const modal = document.querySelector("#previewModal");
+const viewportButtons = document.querySelectorAll("[data-viewport]");
 
 function buildColorControls() {
   const fragment = document.createDocumentFragment();
@@ -239,6 +240,20 @@ modal.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !modal.hidden) modal.hidden = true;
+});
+
+viewportButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const mode = button.dataset.viewport;
+    document.body.classList.remove("preview-tablet", "preview-phone");
+    if (mode !== "desktop") document.body.classList.add(`preview-${mode}`);
+
+    viewportButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+  });
 });
 
 buildColorControls();
