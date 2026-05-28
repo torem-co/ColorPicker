@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>カラーテーマUIプレビュー</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="サイドバー">
+        <div class="brand">
+          <span class="brand-mark">C</span>
+          <span>
+            <strong>ColorKit</strong>
+            <small>テーマプレビュー</small>
+          </span>
+        </div>
+        <nav class="side-nav">
+          <a class="active" href="#dashboard">ダッシュボード</a>
+          <a href="#controls">入力・検索</a>
+          <a href="#table">一覧</a>
+          <a href="#cards">カード</a>
+          <a href="#states">状態表示</a>
+        </nav>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">UIプレビュー</p>
+            <h1>カラーテーマ確認画面</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-inline">
+              <input type="search" placeholder="検索">
+              <button class="btn btn-primary" type="button">検索</button>
+            </div>
+            <button class="btn btn-ghost" type="button" data-open-modal>モーダル</button>
+          </div>
+        </header>
+
+        <section class="theme-panel" aria-labelledby="theme-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">テーマ設定</p>
+              <h2 id="theme-title">テーマカラー</h2>
+            </div>
+            <div class="theme-actions">
+              <label class="select-label">
+                プリセット
+                <select id="presetSelect" aria-label="プリセットテーマ">
+                  <option value="custom">カスタム</option>
+                  <option value="businessBlue">ビジネスブルー</option>
+                  <option value="softGreen">ソフトグリーン</option>
+                  <option value="warmOrange">ウォームオレンジ</option>
+                  <option value="monochrome">モノクローム</option>
+                  <option value="modernPurple">モダンパープル</option>
+                  <option value="darkMode">ダークモード</option>
+                </select>
+              </label>
+              <button class="btn btn-secondary" type="button" id="copyVariables">CSS変数をコピー</button>
+            </div>
+          </div>
+          <div class="color-grid" id="colorControls"></div>
+          <pre class="css-output" id="cssOutput" aria-live="polite"></pre>
+        </section>
+
+        <section class="stats-grid" id="dashboard">
+          <article class="metric-card">
+            <span class="metric-label">売上</span>
+            <strong>¥2,840,000</strong>
+            <small class="trend up">+12.4%</small>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">注文数</span>
+            <strong>1,248</strong>
+            <small class="trend">今月</small>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">成約率</span>
+            <strong>7.8%</strong>
+            <small class="trend warn">要確認</small>
+          </article>
+          <article class="metric-card accent-card">
+            <span class="metric-label">満足度</span>
+            <strong>62</strong>
+            <small class="trend up">良好</small>
+          </article>
+        </section>
+
+        <section class="preview-grid" id="controls">
+          <article class="panel">
+            <div class="section-heading compact">
+              <h2>フォーム</h2>
+              <span class="badge info">入力</span>
+            </div>
+            <form class="form-stack">
+              <label>
+                名前
+                <input type="text" value="サンプルプロジェクト">
+              </label>
+              <label>
+                カテゴリ
+                <select>
+                  <option>業務</option>
+                  <option>個人</option>
+                  <option>社内ツール</option>
+                </select>
+              </label>
+              <label>
+                メモ
+                <textarea rows="3">テーマの色味を確認するための入力欄です。</textarea>
+              </label>
+              <div class="choice-row">
+                <label class="choice"><input type="checkbox" checked> 通知する</label>
+                <label class="choice"><input type="checkbox"> 下書き</label>
+              </div>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="plan" checked> 基本</label>
+                <label class="choice"><input type="radio" name="plan"> 上位</label>
+              </div>
+              <div class="button-row">
+                <button class="btn btn-primary" type="button">保存</button>
+                <button class="btn btn-outline" type="button">キャンセル</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading compact">
+              <h2>検索エリア</h2>
+              <span class="badge success">有効</span>
+            </div>
+            <div class="search-card">
+              <input type="search" placeholder="注文ID、顧客名、メール">
+              <select aria-label="検索ステータス">
+                <option>すべて</option>
+                <option>処理中</option>
+                <option>完了</option>
+              </select>
+              <button class="btn btn-primary" type="button">絞り込み</button>
+            </div>
+            <div class="alert alert-success">保存が完了しました。反映色と通知色を確認できます。</div>
+            <div class="alert alert-warning">一部の入力項目に確認が必要です。</div>
+            <div class="alert alert-danger">処理に失敗しました。Danger色の視認性を確認してください。</div>
+          </article>
+        </section>
+
+        <section class="panel" id="table">
+          <div class="section-heading compact">
+            <h2>一覧テーブル</h2>
+            <div class="tabs" role="tablist" aria-label="表示切替">
+              <button class="tab active" type="button">注文</button>
+              <button class="tab" type="button">顧客</button>
+              <button class="tab" type="button">レポート</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>注文ID</th>
+                  <th>顧客</th>
+                  <th>金額</th>
+                  <th>状態</th>
+                  <th>日付</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#1042</td>
+                  <td>株式会社サンプル</td>
+                  <td>¥128,000</td>
+                  <td><span class="badge success">完了</span></td>
+                  <td>2026/05/28</td>
+                </tr>
+                <tr>
+                  <td>#1041</td>
+                  <td>山田 太郎</td>
+                  <td>¥48,500</td>
+                  <td><span class="badge warning">保留</span></td>
+                  <td>2026/05/27</td>
+                </tr>
+                <tr>
+                  <td>#1040</td>
+                  <td>サンプルスタジオ</td>
+                  <td>¥76,200</td>
+                  <td><span class="badge danger">失敗</span></td>
+                  <td>2026/05/26</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <nav class="pagination" aria-label="ページネーション">
+            <button type="button">前へ</button>
+            <button class="active" type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">次へ</button>
+          </nav>
+        </section>
+
+        <section class="preview-grid" id="cards">
+          <article class="order-card">
+            <div>
+              <span class="badge info">注文カード</span>
+              <h2>注文 #1042</h2>
+              <p>顧客向けアプリでも業務アプリでも使いやすいカード表示。</p>
+            </div>
+            <div class="order-summary">
+              <span>3件の商品</span>
+              <strong>¥128,000</strong>
+            </div>
+            <button class="btn btn-primary" type="button">詳細を見る</button>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading compact">
+              <h2>カレンダー風UI</h2>
+              <span class="badge">5月</span>
+            </div>
+            <div class="calendar">
+              <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+              <button type="button">24</button><button type="button">25</button><button type="button">26</button><button type="button">27</button>
+              <button class="selected" type="button">28</button><button type="button">29</button><button type="button">30</button>
+              <button type="button">31</button><button class="muted-day" type="button">1</button><button class="muted-day" type="button">2</button><button class="muted-day" type="button">3</button>
+              <button class="event" type="button">4</button><button class="muted-day" type="button">5</button><button class="muted-day" type="button">6</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="preview-grid" id="states">
+          <article class="success-card">
+            <div class="success-icon">✓</div>
+            <h2>完了しました</h2>
+            <p>完了画面カードの背景、テキスト、成功色のバランスを確認できます。</p>
+            <button class="btn btn-primary" type="button">戻る</button>
+          </article>
+
+          <article class="empty-state">
+            <div class="empty-icon">□</div>
+            <h2>データがありません</h2>
+            <p>空状態でアクセント色と補助テキストの見え方を確認します。</p>
+            <button class="btn btn-outline" type="button">新規作成</button>
+          </article>
+
+          <article class="panel loading-panel" aria-busy="true">
+            <div class="loader"></div>
+            <h2>読み込み中</h2>
+            <p>読み込み中表示のコントラスト確認用です。</p>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="スマホ用ボトムナビ">
+      <a class="active" href="#dashboard">ホーム</a>
+      <a href="#controls">フォーム</a>
+      <a href="#table">一覧</a>
+      <a href="#states">状態</a>
+    </nav>
+
+    <div class="modal-backdrop" id="previewModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-header">
+          <h2 id="modalTitle">モーダル</h2>
+          <button class="icon-button" type="button" data-close-modal aria-label="閉じる">×</button>
+        </div>
+        <p>Surface、Border、Text、Primaryボタンの見え方を確認するためのモーダルです。</p>
+        <div class="button-row">
+          <button class="btn btn-primary" type="button" data-close-modal>決定</button>
+          <button class="btn btn-outline" type="button" data-close-modal>閉じる</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="copyToast" role="status" aria-live="polite">コピーしました</div>
+    <script src="js/theme-preview.js"></script>
+  </body>
+</html>
